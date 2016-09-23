@@ -51,6 +51,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         LatLng erbil = new LatLng(36.2063, 44.0089);
         CameraPosition target = CameraPosition.builder().target(erbil).zoom(12).build();
-        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(target), 5000, null);
     }
 }
