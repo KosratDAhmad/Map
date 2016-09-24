@@ -1,5 +1,6 @@
 package com.kosratdahmad.map;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,7 +20,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import static com.kosratdahmad.map.R.id.map;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     GoogleMap mMap;
     boolean mapReady = false;
@@ -78,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if(mapReady)
             mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+    }
+    public void streetBtn(View v){
+
+        startActivity(new Intent(this, StreetActivity.class));
     }
 
     @Override
