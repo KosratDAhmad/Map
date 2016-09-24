@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 
@@ -24,6 +25,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     MarkerOptions center;
     MarkerOptions home;
 
+    LatLng inst1 = new LatLng(36.205879, 44.127451);
+    LatLng inst2 = new LatLng(36.206295, 44.129833);
+    LatLng inst3 = new LatLng(36.205512, 44.130091);
+    LatLng inst4 = new LatLng(36.205096, 44.127618);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,5 +89,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng erbil = new LatLng(36.2063, 44.0089);
         CameraPosition target = CameraPosition.builder().target(erbil).zoom(12).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(target), 5000, null);
+
+        mMap.addPolyline(new PolylineOptions().geodesic(true)
+                .add(inst1)
+                .add(inst2)
+                .add(inst3)
+                .add(inst4)
+                .add(inst1));
     }
 }
