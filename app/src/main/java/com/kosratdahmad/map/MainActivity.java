@@ -1,5 +1,6 @@
 package com.kosratdahmad.map;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,9 +12,12 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+
+import static com.kosratdahmad.map.R.id.map;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 
@@ -29,13 +33,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     LatLng inst2 = new LatLng(36.206295, 44.129833);
     LatLng inst3 = new LatLng(36.205512, 44.130091);
     LatLng inst4 = new LatLng(36.205096, 44.127618);
+
+    LatLng homeLatLng = new LatLng(36.174615, 43.995754);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         initializeMarkers();
-        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
     }
 
@@ -96,5 +102,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .add(inst3)
                 .add(inst4)
                 .add(inst1));
+
+        mMap.addCircle(new CircleOptions()
+                .center(homeLatLng)
+                .radius(1000)
+                .strokeColor(Color.GREEN)
+                .fillColor(Color.argb(64,0,255,0)));
     }
 }
