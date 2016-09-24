@@ -11,21 +11,46 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     GoogleMap mMap;
     boolean mapReady = false;
 
+    MarkerOptions college;
+    MarkerOptions institute;
+    MarkerOptions center;
+    MarkerOptions home;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        initializeMarkers();
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
+    private void initializeMarkers(){
+
+        college = new MarkerOptions()
+                .position(new LatLng(36.143408, 44.038090))
+                .title("Erbil Technical Engineering College");
+
+        institute = new MarkerOptions()
+                .position(new LatLng(36.206036, 44.127907))
+                .title("Hawler Private Computer Institute");
+
+        center = new MarkerOptions()
+                .position(new LatLng(36.238826, 44.008241))
+                .title("GT Training Center");
+
+        home = new MarkerOptions()
+                .position(new LatLng(36.174615, 43.995754))
+                .title("Home");
+    }
     public void mapBtn(View v){
 
         if(mapReady)
@@ -48,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.i("Map","onMapReady");
         mapReady = true;
         mMap = googleMap;
+
+        mMap.addMarker(college);
+        mMap.addMarker(institute);
+        mMap.addMarker(center);
+        mMap.addMarker(home);
 
         LatLng erbil = new LatLng(36.2063, 44.0089);
         CameraPosition target = CameraPosition.builder().target(erbil).zoom(12).build();
